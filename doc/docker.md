@@ -26,6 +26,9 @@ mkdir -p  /home/data/nginx/{www,conf,logs}
 ```bash
 npm run buid
 ```
+## 上传
+  将deploy上传到服务器
+
 ## 自动化执行 deploy.sh 脚本
 ```bash
 cd /home/temp/deploy/
