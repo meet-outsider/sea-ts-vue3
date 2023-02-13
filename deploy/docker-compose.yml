@@ -1,0 +1,53 @@
+#指定compose版本
+version: "3.8"
+#定义启动服务
+services:
+  #web服务
+  web-container:
+    ##启动服务时先将build命令中指定的dockerfile打包成镜像，在运行镜像
+    build:
+      #指定上下文目录，即dockerfile所在目录，默认是docker-compose文件所在目录
+      context: .
+      dockerfile: Dockerfile
+    #指定下载镜像
+    #    image: 192.168.3.85:8075/demo:1.0
+    #设置容器名称,相当于 docker run --name 容器名
+    container_name: web-container
+    #设置主机名
+    hostname: web-container
+    #指定容器中运行应用的用户名
+    user: root
+    #指定容器退出后的重启策略为始终重启
+    restart: always
+    #允许容器中运行一些特权命令
+    privileged: true
+    #声明容器端口
+    expose:
+      - "80"
+    #指定对外映射端口,相当于 docker run -p 主机端口:容器端口
+    ports:
+      - "80:80"
+    #挂载目录,相当于 docker run -v 主机目录:容器目录
+    volumes:
+      - /home/data/nginx/www:/usr/share/nginx/html
+      - /home/data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - /home/data/nginx/conf:/etc/nginx/conf.d
+      - /home/data/nginx/logs:/var/log/nginx
+    #使用网桥,相当于 docker run --network 网桥名
+    networks:
+      - mynet
+
+#挂载目录，声明服务使用的自动创建卷名
+volumes:
+  #定义自动创建的卷名
+  vol-nginx:
+    #false-系统自动创建的卷名,格式为: 目录名_卷名，默认为false; true-使用外部创建的卷面，需要自己手动创建
+    external: true
+
+#定义服务网桥,需要自己手动创建
+networks:
+  #定义服务网桥名称
+  mynet:
+    #false-统自动创建网桥名,格式为: 目录名_网桥名，默认为false; true-使用外部创建的网桥，需要自己手动创建
+    external: false
+
