@@ -4,14 +4,15 @@
 curl -sSL https://get.daocloud.io/docker | sh
 ```
 ## docker compose
-```
-官方下载
-sudo curl -L "github.com/docker/comp… -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
+官方下载
+```
+sudo curl -L "github.com/docker/comp… -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
 
 国内镜像下载
+```
 curl -L get.daocloud.io/docker/comp… -s-uname -m` > /usr/local/bin/docker-compose
-
 ```
 ## 在宿主机递归创建nginx数据卷目录
 ```
