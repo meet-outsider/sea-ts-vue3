@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import {useRouter} from "vue-router";
+import {onMounted} from "vue";
 
 const router=useRouter()
+onMounted(()=>{
+  router.push('/')
+})
 </script>
 
 <template>
-  <el-button type="primary" @click="router.go(-1)">回到主页</el-button>
-  注册页
+  <el-scrollbar>
+    <router-view/>
+  </el-scrollbar>
 </template>
