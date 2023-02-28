@@ -2,8 +2,8 @@
 import {computed} from "vue";
 
 const props = defineProps<{
-  width: string,
-  enablePreview: Boolean;
+  width?: string,
+  enablePreview?: Boolean;
 }>()
 const avatar_url = 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
 const preview = avatar_url
